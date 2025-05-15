@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio - Seguridad y Salud en el Trabajo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: #1a1a1a;
+      color: #f4f4f4;
+    }
+
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    body.dark .navbar {
+      background-color: #2a2a2a;
+    }
+
+    .navbar a {
+      color: #333;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 400;
+      transition: color 0.3s;
+    }
+
+    body.dark .navbar a {
+      color: #f4f4f4;
+    }
+
+    .navbar a:hover {
+      color: #000000;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 5rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1, h2 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #007bff;
+    }
+
+    body.dark h2 {
+      color: #66b0ff;
+    }
+
+    #inicio {
+      background: linear-gradient(to right, #0b39d1e8, #0b39d1e8);
+      color: #fff;
+      text-align: center;
+    }
+
+    #inicio h1 {
+      font-size: 3rem;
+    }
+
+    #inicio h2 {
+      color: #fff;
+    }
+
+    #acerca img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 1rem 0;
+      object-fit: cover;
+    }
+    #acerca {
+      background: linear-gradient(to right, #ffffff, #ffffff);
+      color: #fff;
+    }
+    #proyectos {
+      background: linear-gradient(to right, #0b39d1e8, #0b39d1e8);
+      color: #fff;
+    }
+    .proyectos-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+
+    .proyecto {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    body.dark .proyecto {
+      background: #000000;
+    }
+
+    .proyecto:hover {
+      transform: translateY(-10px);
+    }
+
+    .proyecto img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .proyecto h3 {
+      font-size: 1.5rem;
+      margin: 1rem;
+    }
+
+    .proyecto p {
+      padding: 0 1rem 1rem;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    body.dark .proyecto p {
+      color: #000000;
+    }
+    #habilidades {
+      background: linear-gradient(to right, #ffffff, #ffffff);
+      color: #fff;
+    }
+    .habilidades-lista {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+
+    .habilidad {
+      background: #000000;
+      color: #000000;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 1rem;
+    }
+
+    body.dark .habilidad {
+      background: #005566;
+    }
+#contacto {
+      background: linear-gradient(to right, #0b39d1e8, #0b39d1e8);
+      color: #fff;
+    }
+    #contacto a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0.5rem;
+    }
+
+    body.dark #contacto a {
+      color: #66b0ff;
+    }
+
+    #contacto a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .navbar a {
+        margin: 0 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+    }
+      .menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Botón principal */
+    .menu-button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Contenido del desplegable */
+    .menu-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    /* Elementos dentro del desplegable */
+    .menu-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .menu-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Mostrar el menú al pasar el cursor */
+    .menu:hover .menu-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+   <div>
+      <a href="#inicio">Inicio</a>
+    <div class="menu">
+        <div class="menu-content">
+         <a href="#acerca">Acerca de Mí</a>
+         <a href="#proyectos">Mis Proyectos</a>
+         <a href="#habilidades">Habilidades</a>
+         <a href="#contacto">Contacto</a>
+        </div>
+    </div>
+         <a href="#acerca">Acerca de Mí</a>
+         <a href="#proyectos">Mis Proyectos</a>
+         <a href="#habilidades">Habilidades</a>
+         <a href="#contacto">Contacto</a>
+  </div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+  </nav>
+
+  <section id="inicio">
+    <h1>Bienvenidos a mi Portafolio</h1>
+    <p><h2>Oscar Andres Tenorio</h2></p>
+    <p>Especialista en Seguridad y Salud en el Trabajo</p>
+  </section>
+
+  <section id="acerca">
+     <h2><span style="color: rgb(0, 0, 0);">Acerca de mi</span></h2>
+    <a href="https://wa.me/qr/YAYDH7HLHMLRI1" target="_blank"><img src=".img/foto personal.jpg" alt="foto personal">
+    </a>
+    <p><span style="color: rgb(0, 0, 0);">Soy un profesional dedicado a garantizar entornos laborales seguros y saludables. Con experiencia en la implementación de programas de prevención de riesgos y cumplimiento normativo, mi objetivo es proteger la integridad de los trabajadores y optimizar la productividad empresarial.</span></p>
+  </section>
+
+  <section id="proyectos">
+    <h2><span style="color: rgb(255, 255, 255);">Mis Proyectos</span></h2>
+    <div class="proyectos-container">
+      <div class="proyecto">
+        <a href="https://www.comunicandosalud.com/que-es-el-programa-de-capacitacion-del-sg-sst/" target="_blank"><img src=".img/proyecto1.webp" alt="Proyecto1">
+        </a>
+        <h3><span style="color: rgb(0, 0, 0);">Programa de Capacitación en Seguridad</h3>
+        <p>Desarrollé un programa integral de formación para 500 empleados, reduciendo incidentes laborales en un 30%.</span></p>
+      </div>
+      <div class="proyecto">
+        <a href="https://www.unifikas.com/es/noticias/que-es-la-auditoria-de-prevencion-de-riesgos-laborales#:~:text=La%20auditor%C3%ADa%20de%20prevenci%C3%B3n%20de%20riesgos%20laborales%20es%20un%20proceso,riesgos%20laborales%20de%20una%20empresa." target="_blank"><img src=".img/proyecto2" alt="Proyecto2">
+        </a>
+        <h3><span style="color: rgb(0, 0, 0);"> Auditoría de Riesgos Industriales</h3>
+        <p>Realicé una auditoría completa en una planta manufacturera, identificando y mitigando 15 riesgos críticos.</span></p>
+      </div>
+      <div class="proyecto">
+        <a href="https://www.isotools.us/2022/11/08/iso-45001-que-es-y-como-empezar-a-implementar/#:~:text=La%20implementaci%C3%B3n%20de%20ISO%2045001%20es%20una%20decisi%C3%B3n%20estrat%C3%A9gica%20que,valor%20competitivo%20en%20el%20mercado." target="_blank"><img src=".img/proyecto3.jpg" alt="Proyecto3">
+        </a>
+        <h3><span style="color: rgb(0, 0, 0);">Implementación de Normas ISO 45001</h3>
+        <p>Lideré la certificación ISO 45001 en una empresa, asegurando el cumplimiento de estándares internacionales.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="habilidades">
+     <h2><span style="color: rgb(0, 0, 0);">Habilidades</span></h2>
+    <div class="habilidades-lista">
+      <span class="habilidad"><a href="https://www.ibm.com/es-es/topics/risk-management#:~:text=el%20siguiente%20paso-,%C2%BFQu%C3%A9%20es%20la%20gesti%C3%B3n%20de%20riesgos?,accidentes%20y%20las%20cat%C3%A1strofes%20naturales." target="_blank"><span style="color: rgb(255, 255, 255);">Gestión de Riesgos</span>
+      </a></span>
+      <span class="habilidad"><a href="https://www.nqa.com/es-pe/certification/standards/iso-45001#:~:text=%C2%BFQu%C3%A9%20es%20la%20ISO%2045001,de%20accidentes%20y%20enfermedades%20laborales." target="_blank"><span style="color: rgb(255, 255, 255);">Normas ISO 45001</span>
+      </a></span>
+      <span class="habilidad"><a href="https://www.gsh.com.co/blog/importancia-de-la-capacitacion-en-seguridad-laboral/#:~:text=La%20capacitaci%C3%B3n%20en%20seguridad%20laboral%20ayuda%20a%20las%20empresas%20a,las%20sigan%20de%20manera%20adecuada." target="_blank"><span style="color: rgb(255, 255, 255);">Capacitación en Seguridad</span>
+      </a></span>
+      <span class="habilidad"><a href="https://www.docusign.com/es-mx/blog/desarrolladores/auditoria-de-seguridad" target="_blank"><span style="color: rgb(255, 255, 255);">Auditorías de Seguridad</span>
+      </a></span>
+      <span class="habilidad"><a href="https://www.icbf.gov.co/mis-manos-te-ensenan/precauciones-para-prevenir-accidentes-en-casa#:~:text=Mant%C3%A9n%20fuera%20del%20alcance%20los,tira%2C%20le%20pueden%20caer%20encima." target="_blank"><span style="color: rgb(255, 255, 255);">Prevención de Accidentes</span>
+      </a></span>
+      <span class="habilidad"><a href="https://colombia.unir.net/actualidad-unir/ergonomia-laboral/#:~:text=La%20ergonom%C3%ADa%20laboral%20es%20una,la%20seguridad%20en%20el%20trabajo." target="_blank"><span style="color: rgb(255, 255, 255);">Ergonomía Laboral</span>
+      </a></span>
+    </div>
+  </section>
+
+  <section id="contacto">
+     <h3><span style="color: rgb(255, 255, 255);">CONTACTAME PARA COLABORACIONES O CONSULTAS:</span></h3>
+    <a href="https://mail.google.com/mail/u/2/?hl=es_419#inbox"><span style="color: rgb(255, 255, 255);">MI CORREO ELECTRONICO</span></a>
+    <a href="https://wa.me/qr/YAYDH7HLHMLRI1" target="_blank"><span style="color: rgb(255, 255, 255);">WHATSAPP</span></a>
+  </section>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const button = document.querySelector('.theme-toggle');
+      button.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
